@@ -68,7 +68,7 @@ public class Task {
         return 0;
     }
 
-    void setTime(int start, int end, int interval) {
+    public void setTime(int start, int end, int interval) {
         this.start = start;
         this.end = end;
         this.interval = interval;
