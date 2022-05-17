@@ -5,42 +5,48 @@ public class Task {
     private int time, start, end, interval;
     private boolean active, repeat;
 
+    //конструтор для неповторюваної задачі
+
     public Task(String title, int time) {
-        if(time < 0){
-            throw new IllegalArgumentException();
-        }
         this.title = title;
         this.time = time;
         repeat = false;
         active = false;
     }
 
-    public Task(String title, int start, int end, int interval) {
-        if (interval <= 0 || start < 0 || end < 0) {
-            throw new IllegalArgumentException();
-        }
+    //конструтор для повторюваної задачі
 
+    public Task(String title, int start, int end, int interval) {
         this.title = title;
         setTime(start, end, interval);
         repeat = true;
         active = false;
     }
 
+    //метод для повернення назви задачі
+
     public String getTitle() {
         return title;
     }
+
+    //метод для встановлення назви задачі
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    //метод на перевірку чи є задача активною чи ні
+
     public boolean isActive() {
         return active;
     }
+    //метод для встановлення стану активності задачі
 
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    //метод для зчитування стану неповторюваної задачі
 
     public int getTime() {
         if (repeat) {
@@ -49,10 +55,14 @@ public class Task {
         return time;
     }
 
+    //метод для заміни стану неповторюваної задачі
+
     public void setTime(int time) {
         this.time = time;
         repeat = false;
     }
+
+    //метод для зчитування початкового часу повторюваної задачі
 
     public int getStartTime() {
         if (repeat) {
@@ -61,12 +71,17 @@ public class Task {
         return time;
     }
 
+    //метод для зчитування кінечного часу повторюваної задачі
+
     public int getEndTime() {
         if (repeat) {
             return end;
         }
         return time;
     }
+
+    //метод для перевірки повторюваності і передачі інтервалу
+    // повторюваної задачі
 
     public int getRepeatInterval() {
         if (repeat) {
@@ -75,18 +90,25 @@ public class Task {
         return 0;
     }
 
+    //метод для заміни стану повторюваної задачі
+
     public void setTime(int start, int end, int interval) {
         this.start = start;
         this.end = end;
         this.interval = interval;
+        this.time = start;
 
         repeat = true;
 
     }
 
+    //метод для перевірки повторюваності
+
     public boolean isRepeated() {
-        return this.repeat;
+        return repeat;
     }
+
+    //Метод перевірки наступного виконання задачі
 
     public int nextTimeAfter(int current) {
         if (!active) {
