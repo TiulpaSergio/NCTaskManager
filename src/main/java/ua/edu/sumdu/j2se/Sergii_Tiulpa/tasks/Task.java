@@ -6,6 +6,9 @@ public class Task {
     private boolean active, repeat;
 
     public Task(String title, int time) {
+        if(time < 0){
+            throw new IllegalArgumentException();
+        }
         this.title = title;
         this.time = time;
         repeat = false;
@@ -13,6 +16,10 @@ public class Task {
     }
 
     public Task(String title, int start, int end, int interval) {
+        if (interval <= 0 || start < 0 || end < 0) {
+            throw new IllegalArgumentException();
+        }
+
         this.title = title;
         setTime(start, end, interval);
         repeat = true;
