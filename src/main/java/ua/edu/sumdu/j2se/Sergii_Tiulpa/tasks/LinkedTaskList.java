@@ -1,5 +1,9 @@
 package ua.edu.sumdu.j2se.Sergii_Tiulpa.tasks;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 public class LinkedTaskList extends AbstractTaskList{
 
     private class ListElement {
@@ -9,6 +13,19 @@ public class LinkedTaskList extends AbstractTaskList{
         public ListElement(Task task) {
             this.data = task;
             next = null;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ListElement node = (ListElement) o;
+            return Objects.equals(data, node.data) && Objects.equals(next, node.next);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(data, next);
         }
     }
 
@@ -100,27 +117,52 @@ public class LinkedTaskList extends AbstractTaskList{
         return curTemp.data;
     }
 
+    @Override
+    public Iterator<Task> iterator() {
+        return new Iterator<Task>() {
 
-    public LinkedTaskList incoming(int from, int to) {
+            private int currentIndex = 0;
+            private int lastRemoved = -1;
 
-        if (from > to) {
-            throw new IllegalArgumentException("Значення from повинно бути меншим за to!");
-        }
-
-        int nextTaskTime;
-        LinkedTaskList returnArr = new LinkedTaskList();
-        ListElement curTemp = head;
-
-        while(curTemp.next != null){
-            nextTaskTime = curTemp.data.nextTimeAfter(from);
-
-            if(nextTaskTime != -1 && nextTaskTime < to) {
-                returnArr.add(curTemp.data);
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
             }
-            curTemp = curTemp.next;
-        }
 
-        return returnArr;
+            @Override
+            public Task next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                lastRemoved = currentIndex;
+                return getTask(currentIndex++);
+            }
+
+            @Override
+            public void remove() {
+                if (currentIndex < 1) {
+                    throw new IllegalStateException();
+                }
+                LinkedTaskList.this.remove(getTask(lastRemoved));
+                currentIndex--;
+            }
+        };
+    }
+
+    private ListElement task(int index) {
+        ListElement t = null;
+        if (index < (size >> 1)) {
+            t = head;
+            for (int i = 0; i < index; i++) {
+                t = t.next;
+            }
+        }
+        return t;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 }

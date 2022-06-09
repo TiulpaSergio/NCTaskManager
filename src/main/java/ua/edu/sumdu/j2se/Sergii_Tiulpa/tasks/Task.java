@@ -1,12 +1,18 @@
 package ua.edu.sumdu.j2se.Sergii_Tiulpa.tasks;
 
-public class Task {
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Task implements Cloneable{
     private String title;
-    private int time, start, end, interval;
+    private LocalDateTime time;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private int interval;
     private boolean active, repeat;
 
-    public Task(String title, int time) {
-        if(time < 0){
+    public Task(String title, LocalDateTime time) {
+        if(time == null){
             throw new IllegalArgumentException();
         }
         this.title = title;
@@ -15,8 +21,8 @@ public class Task {
         active = false;
     }
 
-    public Task(String title, int start, int end, int interval) {
-        if (interval <= 0 || start < 0 || end < 0) {
+    public Task(String title, LocalDateTime start, LocalDateTime end, int interval) {
+        if (interval <= 0 || start == null || end == null) {
             throw new IllegalArgumentException();
         }
 
@@ -42,26 +48,26 @@ public class Task {
         this.active = active;
     }
 
-    public int getTime() {
+    public LocalDateTime getTime() {
         if (repeat) {
             return start;
         }
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
         repeat = false;
     }
 
-    public int getStartTime() {
+    public LocalDateTime getStartTime() {
         if (repeat) {
             return start;
         }
         return time;
     }
 
-    public int getEndTime() {
+    public LocalDateTime getEndTime() {
         if (repeat) {
             return end;
         }
@@ -75,7 +81,7 @@ public class Task {
         return 0;
     }
 
-    public void setTime(int start, int end, int interval) {
+    public void setTime(LocalDateTime start, LocalDateTime end, int interval) {
         this.start = start;
         this.end = end;
         this.interval = interval;
@@ -89,37 +95,54 @@ public class Task {
         return this.repeat;
     }
 
-    public int nextTimeAfter(int current) {
-        if (!active) {
-            return -1;
-        }
-
-        else {
-            if (!repeat) {
-                if (time <= current) {
-                    return -1;
-                }
-
-                else {
+    public LocalDateTime nextTimeAfter(LocalDateTime current) {
+        if (isActive()) {
+            if (!isRepeated()) {
+                if (time.isAfter(current)) {
                     return time;
                 }
-
-            }
-
-            else {
-                int promizh = start;
-
-                while (promizh <= current) {
-                    promizh += interval;
-
-                    if (promizh > end) {
-                        return -1;
-                    }
+                else {
+                    return null;
                 }
-
-                return promizh;
             }
-
+            for (LocalDateTime i = start; i.isBefore(end) || i.equals(end); i = i.plusSeconds(interval)) {
+                if (current.isBefore(i)) {
+                    return i;
+                }
+            }
         }
+
+        return null;
+
     }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject == null) {
+            return false;
+        }
+        if (this == otherObject) {
+            return true;
+        }
+        if (getClass() != otherObject.getClass()) {
+            return false;
+        }
+        return title.equals(((Task) otherObject).title) &&
+                start == ((Task) otherObject).start &&
+                end == ((Task) otherObject).end &&
+                interval == ((Task) otherObject).interval &&
+                active == ((Task) otherObject).active &&
+                repeat == ((Task) otherObject).repeat;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle(), isActive(), start, end, interval, repeat);
+    }
+
+    @Override
+    public Task clone() throws CloneNotSupportedException {
+        return (Task) super.clone();
+    }
+
 }

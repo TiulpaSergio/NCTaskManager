@@ -1,101 +1,149 @@
 package ua.edu.sumdu.j2se.Sergii_Tiulpa.tasks;
 
-public class ArrayTaskList extends AbstractTaskList{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-    private static final int number = 5;
-    private int num;
-    private Task[] tasks;
-    private int size;
+public class ArrayTaskList extends AbstractTaskList {
+
+
+    private final int INTERVAL = 10;
 
     static {
         type = ListTypes.types.ARRAY;
     }
 
+
+    private Task[] arrTask;
+
+
     public ArrayTaskList() {
-        num = 1;
-        tasks = new Task[number];
-        size = 0;
+        arrTask = new Task[INTERVAL];
     }
 
+    @Override
     public void add(Task task) {
         if (task == null) {
-            throw new NullPointerException("немає значень task!");
+            throw new NullPointerException(
+                    "Attempt to add null to ArrayTaskList!"
+            );
         }
 
-        tasks[size] = task;
+        if (arrTask.length == size) {
+            Task[] temp = new Task[size + INTERVAL];
+
+            System.arraycopy(arrTask, 0, temp, 0, size);
+            arrTask = temp;
+        }
+
+        arrTask[size] = task;
         size++;
-
-        if (size == num) {
-            num = number + size;
-            Task[] tasks2 = new Task[num];
-            System.arraycopy(tasks, 0, tasks2, 0, tasks.length);
-            tasks = tasks2;
-            num = 1;
-        }
-
     }
 
+    @Override
     public boolean remove(Task task) {
+        if (task == null) {
+            throw new NullPointerException(
+                    "Attempt to remove null from ArrayTaskList!"
+            );
+        }
 
-        boolean exist = false;
+        boolean searchStat = false;
+        int indexDel;
 
-        for (int i = 0; i < size; i++) {
-            if (task.equals(tasks[i]) && !exist) {
-                tasks[i] = null;
-                exist = true;
+        for (indexDel = 0; indexDel < size; indexDel++) {
+            if (arrTask[indexDel].equals(task)) {
+                searchStat = true;
+                break;
             }
-            if (exist) {
-                tasks[i] = tasks[i + 1];
-                tasks[i + 1] = null;
-            }
         }
 
-        if (exist) {
-            size--;
+        if (!searchStat) {
+            return false;
         }
 
-        if (size < num - number) {
-            num = size - number;
-            Task[] tasks2 = new Task[num];
+        arrTask[indexDel] = null;
+        size--;
 
-            System.arraycopy(tasks, 0, tasks2, 0, tasks.length);
-            tasks = tasks2;
-            num = 1;
+        if (indexDel != size) {
+            System.arraycopy(arrTask, indexDel + 1, arrTask, indexDel,
+                    size - indexDel);
         }
 
-        return exist;
+        if (arrTask.length - INTERVAL == size &&
+                size != 0) {
+            Task[] temp = new Task[size];
+
+            System.arraycopy(arrTask, 0, temp, 0, size);
+            arrTask = temp;
+        }
+
+        return true;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public Task getTask(int index) {
-        if (index < 0 || index > size) {
-            throw new ArrayIndexOutOfBoundsException("Індекс не входить у масив!");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(
+                    "Invalid ArrayTaskList index!"
+            );
         }
-        return tasks[index];
+        return arrTask[index];
     }
 
+    @Override
+    public Iterator<Task> iterator() {
+        return new Iterator<Task>() {
+            private int index = 0;
 
-    public ArrayTaskList incoming(int from, int to) {
-
-        if (from > to) {
-            throw new IllegalArgumentException("Значення from повинно бути меншим за to!");
-        }
-
-        int nextTaskTime;
-        ArrayTaskList newArr = new ArrayTaskList();
-
-        for (int index = 0; index < size; index++) {
-            nextTaskTime = tasks[index].nextTimeAfter(from);
-
-            if (nextTaskTime != -1 && nextTaskTime < to) {
-                newArr.add(tasks[index]);
+            @Override
+            public boolean hasNext() {
+                return index < size;
             }
-        }
 
-        return newArr;
+            @Override
+            public Task next() {
+                if (index == size) {
+                    throw new NoSuchElementException("Iterator reached last position!");
+                }
+                return arrTask[index++];
+            }
+
+            @Override
+            public void remove() {
+                if (index == 0) {
+                    throw new IllegalStateException("Needs calling of next() iterator method!");
+                }
+
+                index--;
+                arrTask[index] = null;
+                size--;
+
+                if (index != size) {
+                    System.arraycopy(arrTask, index + 1, arrTask, index, size - index);
+                }
+
+                if (arrTask.length - INTERVAL == size && size != 0) {
+                    Task[] temp = new Task[size];
+
+                    System.arraycopy(arrTask, 0, temp, 0, size);
+                    arrTask = temp;
+                }
+            }
+        };
+    }
+
+    @Override
+    public ArrayTaskList clone() {
+        ArrayTaskList retObj = new ArrayTaskList();
+        for (int counter = 0; counter < size; counter++) {
+            retObj.add(arrTask[counter]);
+        }
+        return retObj;
     }
 
 }
