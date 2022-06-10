@@ -2,8 +2,9 @@ package ua.edu.sumdu.j2se.Sergii_Tiulpa.tasks;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.io.Serializable;
 
-public class Task implements Cloneable{
+public class Task implements Cloneable, Serializable{
     private String title;
     private LocalDateTime time;
     private LocalDateTime start;
