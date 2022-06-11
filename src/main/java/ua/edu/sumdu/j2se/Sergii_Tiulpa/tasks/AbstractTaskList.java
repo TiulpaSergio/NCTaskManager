@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import java.time.LocalDateTime;
+import java.io.Serializable;
 
-public abstract class AbstractTaskList implements Iterable<Task>{
+public abstract class AbstractTaskList implements Iterable<Task>, Serializable{
 
     protected int size;
     protected static ListTypes.types type;
