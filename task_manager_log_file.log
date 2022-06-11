@@ -1,0 +1,85 @@
+2022-06-11 18:55:38 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 18:55:38 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 18:55:38 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 18:55:38 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 18:55:38 INFO  Controller:33 - Password verification
+2022-06-11 18:55:38 INFO  Passwords:46 - java.io.FileNotFoundException: password.txt (The system cannot find the file specified)
+2022-06-11 18:56:11 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 18:56:11 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 18:56:11 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 18:56:11 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 18:56:11 INFO  Controller:33 - Password verification
+2022-06-11 18:56:11 INFO  Passwords:46 - java.io.FileNotFoundException: password.txt (The system cannot find the file specified)
+2022-06-11 18:56:40 INFO  TaskManager:45 - Deleting json file if exist
+2022-06-11 18:56:40 INFO  TaskManager:48 - Write tasks' data into json file
+2022-06-11 18:56:40 INFO  TaskManager:50 - Writing data was successful
+2022-06-11 18:56:40 INFO  TaskManager:40 - Task Manager application has finished its work
+2022-06-11 18:57:58 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 18:57:58 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 18:57:58 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 18:57:58 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 18:57:58 INFO  Controller:33 - Password verification
+2022-06-11 18:57:58 INFO  Passwords:46 - java.io.FileNotFoundException: password.txt (The system cannot find the file specified)
+2022-06-11 18:59:17 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 18:59:17 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 18:59:17 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 18:59:17 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 18:59:17 INFO  Controller:33 - Password verification
+2022-06-11 18:59:45 INFO  TaskManager:45 - Deleting json file if exist
+2022-06-11 18:59:45 INFO  TaskManager:48 - Write tasks' data into json file
+2022-06-11 18:59:45 INFO  TaskManager:50 - Writing data was successful
+2022-06-11 18:59:45 INFO  TaskManager:40 - Task Manager application has finished its work
+2022-06-11 18:59:53 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 18:59:53 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 18:59:53 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 18:59:53 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 18:59:53 INFO  Controller:33 - Password verification
+2022-06-11 19:01:23 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 19:01:23 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 19:01:23 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 19:01:23 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 19:01:23 INFO  Controller:33 - Password verification
+2022-06-11 19:05:34 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 19:05:34 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 19:05:34 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 19:05:34 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 19:05:34 INFO  Controller:33 - Password verification
+2022-06-11 19:05:49 INFO  Controller:36 - Executing main controller command
+2022-06-11 19:05:49 INFO  View:23 - Displaying the main user menu
+2022-06-11 19:05:54 INFO  ControllerTasks:195 - Execute show task list action
+2022-06-11 19:05:54 INFO  View:48 - Showing tasks' list
+2022-06-11 19:05:54 INFO  ViewTasks:29 - Showing all task list
+2022-06-11 19:05:54 INFO  ViewTasks:32 - List is empty
+2022-06-11 19:05:54 INFO  View:23 - Displaying the main user menu
+2022-06-11 19:05:59 INFO  View:58 - Checking user answer
+2022-06-11 19:05:59 INFO  View:63 - Parsing the user response
+2022-06-11 19:06:08 INFO  ControllerTasks:26 - Execute add action
+2022-06-11 19:06:08 INFO  View:74 - Getting task title
+2022-06-11 19:06:08 INFO  ViewTasks:119 - Getting task title
+2022-06-11 19:06:24 INFO  View:79 - Getting repeated status
+2022-06-11 19:06:24 INFO  ViewTasks:132 - Getting repeated status
+2022-06-11 19:06:30 INFO  ControllerTasks:36 - Creating repeated task
+2022-06-11 19:06:30 INFO  View:84 - Getting start time
+2022-06-11 19:06:30 INFO  ViewTasks:151 - Getting start time
+2022-06-11 19:07:09 INFO  View:89 - Getting end time
+2022-06-11 19:07:09 INFO  ViewTasks:170 - Getting end time
+2022-06-11 19:07:32 INFO  View:94 - Getting task interval
+2022-06-11 19:07:32 INFO  ViewTasks:189 - Getting interval
+2022-06-11 19:08:11 INFO  View:23 - Displaying the main user menu
+2022-06-11 19:08:15 INFO  ControllerTasks:195 - Execute show task list action
+2022-06-11 19:08:15 INFO  View:48 - Showing tasks' list
+2022-06-11 19:08:15 INFO  ViewTasks:29 - Showing all task list
+2022-06-11 19:08:15 INFO  ViewTasks:32 - List is empty
+2022-06-11 19:08:15 INFO  View:23 - Displaying the main user menu
+2022-06-11 19:08:17 INFO  ControllerTasks:200 - Execute show task calendar action
+2022-06-11 19:08:17 INFO  View:53 - Showing tasks' calendar
+2022-06-11 19:08:17 INFO  ViewTasks:85 - Getting task calendar
+2022-06-11 19:08:17 INFO  ViewTasks:151 - Getting start time
+2022-06-11 19:08:35 INFO  ViewTasks:170 - Getting end time
+2022-06-11 19:08:42 INFO  ViewTasks:107 - Calendar is empty
+2022-06-11 19:08:42 INFO  View:23 - Displaying the main user menu
+2022-06-11 19:14:44 INFO  TaskManager:31 - Starting Task Manager application
+2022-06-11 19:14:44 INFO  TaskManager:58 - Reading tasks' data from json file
+2022-06-11 19:14:44 INFO  TaskManager:60 - Reading data was successful
+2022-06-11 19:14:44 INFO  TaskManager:34 - Declare View and Controller
+2022-06-11 19:14:44 INFO  Controller:33 - Password verification
